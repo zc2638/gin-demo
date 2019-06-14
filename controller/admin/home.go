@@ -174,11 +174,6 @@ func (t *HomeController) OperateData(c *gin.Context) {
 		}
 	}
 
-	cpuMap.Range(func(k, v interface{}) bool {
-		cpuData[k.(string)] = v
-		return true
-	})
-
 	uriI := `http://192.168.170.18:9090/api/v1/query?query=ifHCInOctets{ifAlias="eth2",ifDescr="WAN2",ifIndex="16777218",ifName="WAN2",instance="192.168.1.1",job="snmp",tag="DaoCloud_Route"}`
 	uriO := `http://192.168.170.18:9090/api/v1/query?query=ifHCOutOctets{ifAlias="eth2",ifDescr="WAN2",ifIndex="16777218",ifName="WAN2",instance="192.168.1.1",job="snmp",tag="DaoCloud_Route"}`
 
@@ -220,6 +215,11 @@ func (t *HomeController) OperateData(c *gin.Context) {
 		wg.Done()
 	}()
 	wg.Wait()
+
+	cpuMap.Range(func(k, v interface{}) bool {
+		cpuData[k.(string)] = v
+		return true
+	})
 
 	t.Data(c, gin.H{
 		"cpu": cpuData,

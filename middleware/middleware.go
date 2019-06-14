@@ -40,8 +40,7 @@ func AdminAuth(c *gin.Context) {
 
 	jwtData, err := jwt.ParseInfo(tokenStr, config.JWT_SECRET_ADMIN)
 	if err != nil {
-		c.AbortWithStatusJSON(http.StatusOK, gin.H{
-			"code": config.CODE_FAIL,
+		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
 			"msg": "异常登录信息",
 		})
 		return
@@ -49,8 +48,7 @@ func AdminAuth(c *gin.Context) {
 
 	info, ok := jwtData["info"]
 	if !ok {
-		c.AbortWithStatusJSON(http.StatusOK, gin.H{
-			"code": config.CODE_FAIL,
+		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
 			"msg": "异常登录信息",
 		})
 		return
