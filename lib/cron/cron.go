@@ -67,5 +67,6 @@ func Stop() {
 
 func Restart() {
 	Stop()
+	cn = cron.New()
 	Start()
 }

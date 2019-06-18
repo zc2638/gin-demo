@@ -49,6 +49,7 @@ func RouteAdmin(g *gin.Engine) {
 		admins.GET("/note/list", noteController.List)      // 大事记列表
 		admins.POST("/note/create", noteController.Create) // 大事记创建
 		admins.POST("/note/update", noteController.Update) // 大事记更新
+		admins.POST("/note/delete", noteController.Delete) // 大事记删除
 
 		var configController = new(admin.ConfigController)
 		admins.GET("/config/mail", configController.GetMailConfig)           // 获取邮箱配置

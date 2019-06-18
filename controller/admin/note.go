@@ -85,3 +85,20 @@ func (t *NoteController) Update(c *gin.Context) {
 
 	t.Succ(c, "更新成功")
 }
+
+func (t *NoteController) Delete(c *gin.Context) {
+
+	_ = c.Request.ParseForm()
+
+	id := c.PostForm("id")
+	noteService := new(service.NoteService)
+	note, err := noteService.GetNoteByID(id)
+	if err != nil {
+		t.Err(c, err.Error())
+		return
+	}
+
+	noteService.DeleteNote(note)
+
+	t.Succ(c, "删除成功")
+}
