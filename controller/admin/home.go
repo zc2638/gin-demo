@@ -163,12 +163,12 @@ func (t *HomeController) OperateData(c *gin.Context) {
 				var res dataStruct.CPUData
 				if err == nil {
 					if err := json.Unmarshal(b, &res); err == nil && res.Status == "success" && len(res.Data.Result) == 1 {
-						cpuMap.Store(vv, res.Data.Result[0].Value)
+						cpuMap.Store(ip, res.Data.Result[0].Value)
 						wg.Done()
 						return
 					}
 				}
-				cpuMap.Store(vv, []int{0, 0})
+				cpuMap.Store(ip, []int{0, 0})
 				wg.Done()
 			}(k, vv)
 		}
