@@ -86,12 +86,9 @@ func (t *Admin) Update(c *gin.Context) {
 	id := c.DefaultPostForm("id", "0")
 	name := c.PostForm("name")
 	password := c.PostForm("password")
+	rule := c.PostForm("rule")
 	if id == "0" {
 		t.Err(c, "请选择用户")
-		return
-	}
-	if name == "" && password == "" {
-		t.Err(c, "无修改内容")
 		return
 	}
 
@@ -115,6 +112,10 @@ func (t *Admin) Update(c *gin.Context) {
 	if password != "" {
 		admin.Password = utils.MD5(password)
 	}
+	if admin.Rule != rule {
+		admin.Rule = rule
+	}
+
 	adminService.UpdateAdmin(admin)
 
 	t.Succ(c, "修改成功")

@@ -39,7 +39,7 @@ func seedModule() {
 	db.First(&module)
 	if module.ID == 0 {
 		db.Exec("INSERT INTO `modules` (`name`) VALUES (?), (?), (?), (?), (?), (?), (?), (?);",
-			"行业应用项目组", "技术方案与生态合作", "PMO运营", "道客大学", "日常运营", "人事运营", "一周大事记播报", "IT运营")
+			"行业应用项目组", "技术方案与生态合作", "PMO运营", "道客大学", "日常运营", "人事运营", "工业互联网", "IT运营")
 		logger.Info("module数据填充成功")
 	} else {
 		logger.Info("module数据已填充")
