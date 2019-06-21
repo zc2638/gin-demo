@@ -10,6 +10,5 @@ require (
 	github.com/jinzhu/gorm v1.9.8
 	github.com/robfig/cron v1.1.0
 	github.com/sirupsen/logrus v1.4.2
-	github.com/zctod/go-tool v0.0.3
 	github.com/zctod/tool v0.0.2
 )
