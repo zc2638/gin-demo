@@ -11,6 +11,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/zctod/tool/common/util_server"
 	"net/http"
+	"os/exec"
+	"runtime"
 	"time"
 )
 
@@ -33,6 +35,12 @@ func main() {
 	startServer(g)
 }
 
+var commands = map[string]string{
+	"windows": "start",
+	"darwin":  "open",
+	"linux":   "xdg-open",
+}
+
 func startServer(g *gin.Engine) {
 
 	server := &http.Server{
@@ -41,6 +49,11 @@ func startServer(g *gin.Engine) {
 		ReadTimeout:    10 * time.Second,
 		WriteTimeout:   10 * time.Second,
 		MaxHeaderBytes: 1 << 20,
+	}
+
+	if run, ok := commands[runtime.GOOS]; ok {
+		cmd := exec.Command(run, "http://localhost:" + config.Cfg.Port)
+		_ = cmd.Start()
 	}
 
 	go func() {
