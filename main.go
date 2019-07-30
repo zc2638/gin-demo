@@ -3,8 +3,8 @@ package main
 import (
 	"dc-kanban/config"
 	"dc-kanban/controller"
-	_ "dc-kanban/lib/cron"
-	_ "dc-kanban/lib/database"
+	//_ "dc-kanban/lib/cron"
+	//_ "dc-kanban/lib/database"
 	"dc-kanban/middleware"
 	"dc-kanban/route"
 	"fmt"
