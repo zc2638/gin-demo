@@ -21,7 +21,7 @@ func (t *CategoryController) List(c *gin.Context) {
 		return
 	}
 
-	t.Array(c, cateList)
+	t.Data(c, cateList)
 }
 
 func (t *CategoryController) Show(c *gin.Context) {
@@ -35,7 +35,7 @@ func (t *CategoryController) Show(c *gin.Context) {
 		t.Err(c, err.Error())
 		return
 	}
-	t.Array(c, itemList)
+	t.Data(c, itemList)
 }
 
 func (t *CategoryController) Create(c *gin.Context) {
